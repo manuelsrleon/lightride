@@ -33,9 +33,6 @@ CRGB leds[NUM_STRIPS][NUM_LEDS];
 CRGBPalette16 currentPalette;
 TBlendType    currentBlending;
 
-extern CRGBPalette16 myRedWhiteBluePalette;
-extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
-
 
 void setup() {
     delay( 3000 ); // power-up safety delay
@@ -45,32 +42,39 @@ void setup() {
     //FastLED.addLeds<LED_TYPE, TL_LED_PIN, COLOR_ORDER>(leds[1], NUM_LEDS).setCorrection( TypicalLEDStrip );
     FastLED.setBrightness(  BRIGHTNESS );
     
-    currentPalette = RainbowColors_p;
     currentBlending = LINEARBLEND;
 }
 
 
 void loop()
 {
-    fill_solid( currentPalette, 16, CRGB::White);                                                       
-
     
     static uint8_t startIndex = 0;
     startIndex = startIndex + 1; /* motion speed */
     
-    FillLEDsFromPaletteColors( startIndex);
+    FillLEDsSolid(leds[0], CRGB::White, 255);
+    //FillLEDsSolid(leds[0], CRGB::Red, 255);
     
     FastLED.show();
     FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
 
-void FillLEDsFromPaletteColors( uint8_t colorIndex)
+void FillLEDsFromPaletteColors(CRGB leds[], uint8_t colorIndex, CRGBPalette16 palette)
 {
     uint8_t brightness = 255;
     
     for( int i = 0; i < NUM_LEDS; i++) {
-        leds[0][i] = ColorFromPalette( currentPalette, colorIndex, brightness, currentBlending);
+        leds[i] = ColorFromPalette( currentPalette, colorIndex, brightness, currentBlending);
         colorIndex += 3;
+    }
+}
+
+void FillLEDsSolid(CRGB leds[], CRGB color, uint8_t brightness)
+{
+    brightness = 255;
+    
+    for( int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = color;
     }
 }
 
