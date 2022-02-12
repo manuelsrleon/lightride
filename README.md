@@ -19,8 +19,10 @@ Arduino-based lighting system for skate helmets using WS2812B lightstrips.
 ### v1.1
 🟦 Turn signaling with accelerometer-based input hit detection.
 
-### v1.2
+### v2.0
 🟦 Li-ion + BMS + USB-C battery power supply and charging system 
 
 ## Wishlist
 · Custom LED Animation support
+
+This project is completely OSS and OSHW. Feel free to do whatever you want with it.
