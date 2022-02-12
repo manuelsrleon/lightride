@@ -10,7 +10,7 @@ Arduino-based lighting system for skate helmets using WS2812B lightstrips.
 🟦 Design and 3D print mounts for controller and PSU.
 
 ### v0.3
-🟦 Turn signalling support with b
+🟦 Turn signalling support via front buttons
 
 ## v1.0
 🟦 Definitive PSU solution  
