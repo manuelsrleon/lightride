@@ -1,5 +1,6 @@
 #include <FastLED.h>
 #include <time.h>
+
 //from FastLED example
 #define LED_PIN 5
 #define NUM_LEDS 32
@@ -21,8 +22,19 @@ CRGB br_leds[B_SIZE];
 CRGB leds[32];
 #define UPDATES_PER_SECOND 1000
 
-unsigned long _time;
 
+//input
+#include <EasyButton.h>
+#define L_PIN 3
+#define R_PIN 2
+#define F_PIN 4
+EasyButton R_button(R_PIN);
+EasyButton L_button(L_PIN);
+EasyButton F_button(F_PIN);
+char mode;
+
+//time
+unsigned long _time;
 int current_time;
 
 void setup() {
@@ -34,11 +46,19 @@ void setup() {
   fill(f_leds,  F_SIZE, CRGB::White);
   fill(bl_leds, B_SIZE, CRGB::Yellow);
   fill(br_leds, B_SIZE, CRGB::Red);
+
+  R_button.begin();
+  R_button.onPressed(onPressed_R);
+  L_button.begin();
+  L_button.onPressed(onPressed_R);
+  F_button.begin();
+  F_button.onPressed(onPressed_F);
 }
 
 void loop() {
-  char mode;
-  mode = 'H';
+  R_button.read();
+  L_button.read();
+  F_button.read();
   _time = millis() % 500;
   anim_func_turnlights(bl_leds,B_SIZE, _time, 1);
   //fill(bl_leds,B_SIZE,CRGB::Red);
@@ -122,3 +142,22 @@ int anim_func_turnlights(CRGB this_leds[], int n, float current_time, int revers
   }
   return 0;
 }
+
+//INPUTS
+void onPressed_R(){
+  if(mode == 'R'){
+    mode = 'D';
+  }else{
+    mode = 'R';
+  }
+} 
+void onPressed_L(){
+  if(mode == 'L'){
+    mode = 'D';
+  }else{
+    mode = 'L';
+  }
+} 
+void onPressed_F(){
+  
+} 
