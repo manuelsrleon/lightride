@@ -3,7 +3,7 @@
 
 //from FastLED example
 #define LED_PIN 5
-#define NUM_LEDS 32
+#define NUM_LEDS 28
 #define BRIGHTNESS 32
 #define LED_TYPE WS2812B
 #define COLOR_ORDER GRB
@@ -19,7 +19,7 @@ CRGB f_leds[F_SIZE];
 CRGB bl_leds[B_SIZE];
 CRGB br_leds[B_SIZE];
 
-CRGB leds[32];
+CRGB leds[NUM_LEDS];
 #define UPDATES_PER_SECOND 1000
 
 
